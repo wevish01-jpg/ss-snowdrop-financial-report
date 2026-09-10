@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SS Snowdrop Apartment - August 2026 Financial Summary</title>
+<style>
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#eaf3f8;
+    color:#173b5f;
+  }
+  .poster{
+    width:min(1400px,100%);
+    margin:24px auto;
+    background:#fff;
+    overflow:hidden;
+    box-shadow:0 12px 35px rgba(22,61,94,.15);
+  }
+  .hero{
+    min-height:180px;
+    padding:28px 38px 24px;
+    background:linear-gradient(110deg,#dff3ff,#f7fbff);
+    display:flex;
+    align-items:center;
+    gap:26px;
+    border-bottom:5px solid #1988c4;
+  }
+  .building{
+    width:125px;height:125px;flex:none;
+    display:flex;align-items:center;justify-content:center;
+    font-size:70px;
+    filter:drop-shadow(0 5px 4px rgba(0,0,0,.12));
+  }
+  h1{margin:0;color:#12477e;font-size:34px;line-height:1.08;letter-spacing:.3px}
+  .subtitle{font-size:22px;font-weight:700;margin-top:10px;color:#145d91}
+  .period{margin-top:9px;font-size:16px;font-weight:700;color:#234f73}
+  .tagline{margin-left:auto;text-align:center;font-size:20px;font-weight:700;color:#1672a7;line-height:1.25;white-space:nowrap}
+  .content{padding:18px 20px 22px}
+  .grid{display:grid;gap:16px}
+  .top{grid-template-columns:39% 61%}
+  .mid{grid-template-columns:50% 50%;margin-top:16px}
+  .bottom{grid-template-columns:70% 30%;margin-top:16px}
+  .full{margin-top:16px}
+  .card{
+    border:1px solid #c7dce9;
+    border-radius:15px;
+    overflow:hidden;
+    background:#fff;
+  }
+  .card-title{
+    padding:11px 15px;
+    font-size:19px;font-weight:800;
+    color:#fff;
+    display:flex;align-items:center;gap:9px;
+  }
+  .blue{background:linear-gradient(90deg,#0865a1,#197faf)}
+  .green{background:linear-gradient(90deg,#15956b,#27b784)}
+  .purple{background:linear-gradient(90deg,#6942b4,#765fc4)}
+  .orange{background:linear-gradient(90deg,#e57d0b,#ee9b29)}
+  .teal{background:linear-gradient(90deg,#087f9c,#0e9cb5)}
+  .body{padding:14px}
+  .summary-text{font-size:15px;line-height:1.55;color:#294b63}
+  .summary-text strong{color:#174d78}
+  .metrics{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:14px;
+  }
+  .metric{
+    min-height:108px;border-radius:12px;padding:13px 14px;
+    border:1px solid #c4dceb;background:#eef8ff;
+  }
+  .metric.greenbg{background:#e7f8ee;border-color:#a9e4c4}
+  .metric.redbg{background:#fff0f0;border-color:#f1c2c2}
+  .metric.purplebg{background:#f0eaff;border-color:#d1c2f4}
+  .metric.tealbg{background:#e8f8f5;border-color:#b3e3d8}
+  .metric-label{font-size:13px;font-weight:700;color:#286080}
+  .metric-value{font-size:23px;font-weight:900;margin-top:8px;color:#096da7}
+  .greenbg .metric-value{color:#087652}.redbg .metric-value{color:#bf3030}
+  .purplebg .metric-value{color:#5930a4}.tealbg .metric-value{color:#08756e}
+  .txn{display:flex;justify-content:space-between;margin:0 14px 14px}
+  .txn div{padding:10px 13px;border-radius:10px;border:1px solid #c9e6d9;background:#effbf6;font-weight:700;color:#126c50}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{background:#e7f5fb;color:#14557b;text-align:left;font-weight:800}
+  th,td{padding:7px 8px;border:1px solid #c8dce7;vertical-align:top}
+  td.num,th.num{text-align:right;white-space:nowrap}
+  tr.total td{font-weight:900;background:#e8f5fb;color:#073f68}
+  .note{margin-top:10px;padding:10px 12px;border-radius:9px;background:#eef9f6;color:#226553;font-size:13px}
+  .expense-row{
+    display:grid;grid-template-columns:34px 82px 1fr 115px;
+    align-items:center;gap:10px;padding:9px 8px;
+    border-bottom:1px solid #f0dfc2;font-size:13px;
+  }
+  .rank{width:30px;height:30px;border-radius:50%;background:#e98b18;color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center}
+  .expense-row:last-child{border-bottom:0}
+  .amount{font-weight:900;color:#c65f08;text-align:right}
+  .highlight{font-weight:800;color:#75460c}
+  .chart-wrap{padding:18px;text-align:center}
+  .donut{
+    width:190px;height:190px;border-radius:50%;margin:0 auto 15px;
+    background:conic-gradient(#7045b7 0 28.8%,#2589c5 28.8% 44.7%,#55a54b 44.7% 55.8%,#f28b19 55.8% 65.8%,#8a9aaa 65.8% 100%);
+    position:relative;
+  }
+  .donut:after{
+    content:"₹5,44,986.16\A Total Expenses";
+    white-space:pre;text-align:center;
+    position:absolute;inset:45px;border-radius:50%;
+    background:#fff;display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:13px;color:#214c6e;line-height:1.5;
+  }
+  .legend{text-align:left;font-size:12px;line-height:1.8}
+  .legend span{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px}
+  .legend .a{background:#7045b7}.legend .b{background:#2589c5}.legend .c{background:#55a54b}
+  .legend .d{background:#f28b19}.legend .e{background:#8a9aaa}
+  .top5{padding:0 14px 14px}
+  .bigmoney{font-size:13px;margin-bottom:10px;color:#724f22}
+  .footer{
+    margin:0 20px 20px;padding:14px 18px;border-radius:12px;
+    background:#dff1fb;color:#1d5879;display:flex;justify-content:space-between;
+    align-items:center;font-size:12px;font-weight:700;
+  }
+  .small{font-size:12px;color:#527087}
+  @media(max-width:1050px){
+    .top,.mid,.bottom{grid-template-columns:1fr}
+    .tagline{display:none}
+  }
+  @media(max-width:700px){
+    .hero{padding:20px;gap:12px}.building{width:75px;height:75px;font-size:48px}
+    h1{font-size:23px}.subtitle{font-size:17px}.period{font-size:12px}
+    .metrics{grid-template-columns:1fr 1fr}.expense-row{grid-template-columns:32px 72px 1fr}
+    .expense-row .amount{grid-column:3;text-align:left}
+    table{font-size:11px}th,td{padding:5px}
+  }
+  @media(max-width:480px){.metrics{grid-template-columns:1fr}.content{padding:10px}.footer{margin:0 10px 10px}}
+  @media print{
+    body{background:#fff}.poster{width:100%;margin:0;box-shadow:none}
+    .card{break-inside:avoid}.hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+<header class="hero">
+  <div class="building">🏢</div>
+  <div>
+    <h1>SS SNOWDROP APARTMENT<br>ALLOTTEES WELFARE ASSOCIATION</h1>
+    <div class="subtitle">Bank Statement Analysis Report</div>
+    <div class="period">Statement Period: 01 August 2026 to 31 August 2026 &nbsp; | &nbsp; Account No: 925010038838649</div>
+  </div>
+  <div class="tagline">Stronger<br>Community<br>Better Living</div>
+</header>
+
+<main class="content">
+
+<section class="grid top">
+  <div class="card">
+    <div class="card-title blue">📄 1. Executive Summary</div>
+    <div class="body summary-text">
+      This report analyses the bank statement of <strong>SS Snowdrop Apartment Allottees Welfare Association</strong>
+      for the period <strong>01/08/2026 to 31/08/2026</strong>.<br><br>
+      The uploaded transaction table covers this single period. The filename date (04-09-2026) is simply when the
+      statement was downloaded, not the transaction month.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title blue">📊 Key Financial Summary</div>
+    <div class="metrics">
+      <div class="metric greenbg"><div class="metric-label">Opening Balance<br>(01-Aug-2026)</div><div class="metric-value">₹14,53,224.10</div></div>
+      <div class="metric"><div class="metric-label">Total Income<br>(Credits)</div><div class="metric-value">₹7,26,799.00</div></div>
+      <div class="metric redbg"><div class="metric-label">Total Expenses<br>(Debits)</div><div class="metric-value">₹5,44,986.16</div></div>
+      <div class="metric purplebg"><div class="metric-label">Net Change<br>During the Month</div><div class="metric-value">₹1,81,812.84</div></div>
+      <div class="metric tealbg"><div class="metric-label">Closing Balance<br>(31-Aug-2026)</div><div class="metric-value">₹16,35,036.94</div></div>
+      <div class="metric greenbg"><div class="metric-label">Transactions</div><div class="metric-value">194 Credits<br>22 Debits</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="grid mid">
+  <div class="card">
+    <div class="card-title green">💰 2. Amount Received — By Source</div>
+    <div class="body">
+      <div class="summary-text">Almost all money received during the month is apartment maintenance collected through the NoBroker payment platform. NoBroker's remittances identify the payer only by flat number, not by the resident's name.</div>
+      <br>
+      <table>
+        <thead><tr><th>Source / Name</th><th class="num">No. of Txns</th><th class="num">Total Received</th><th class="num">% of Total</th></tr></thead>
+        <tbody>
+          <tr><td>Apartment Maintenance Collections (via NoBroker — 114 flats)</td><td class="num">191</td><td class="num">₹6,99,624.00</td><td class="num">96.3%</td></tr>
+          <tr><td>CHANDRA SHEKARB</td><td class="num">1</td><td class="num">₹20,175.00</td><td class="num">2.8%</td></tr>
+          <tr><td>ADONMO PRIVATE LIMITED</td><td class="num">1</td><td class="num">₹4,000.00</td><td class="num">0.6%</td></tr>
+          <tr><td>BISANI SIVAKRIS</td><td class="num">1</td><td class="num">₹3,000.00</td><td class="num">0.4%</td></tr>
+          <tr class="total"><td>TOTAL RECEIVED</td><td class="num">194</td><td class="num">₹7,26,799.00</td><td class="num">100.0%</td></tr>
+        </tbody>
+      </table>
+      <div class="note">ⓘ Full apartment-wise collection breakdown for all 114 flats is available in the accompanying Excel workbook, sheet <strong>Apartment-wise Collection</strong>.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title purple">💳 3. Expenses — By Vendor / Payee</div>
+    <div class="body">
+      <div class="summary-text">Total expenses for August 2026 were <strong>₹5,44,986.16</strong> across <strong>22 transactions</strong>.</div>
+      <br>
+      <table>
+        <thead><tr><th>Vendor / Payee</th><th class="num">Txns</th><th class="num">Total Paid</th><th class="num">% Total</th></tr></thead>
+        <tbody>
+          <tr><td>BULLS INDIA SECURITA</td><td class="num">1</td><td class="num">₹1,56,773.00</td><td class="num">28.8%</td></tr>
+          <tr><td>BESCOM - Electricity Bill Payment</td><td class="num">4</td><td class="num">₹86,644.16</td><td class="num">15.9%</td></tr>
+          <tr><td>DURYODHAN SAHOO</td><td class="num">1</td><td class="num">₹60,330.00</td><td class="num">11.1%</td></tr>
+          <tr><td>CHANDRA SHEKAR REDDY</td><td class="num">1</td><td class="num">₹54,720.00</td><td class="num">10.0%</td></tr>
+          <tr><td>PRAKASH V</td><td class="num">4</td><td class="num">₹45,682.00</td><td class="num">8.4%</td></tr>
+          <tr><td>HEMANTH KUMAR KUMAR N</td><td class="num">1</td><td class="num">₹34,200.00</td><td class="num">6.3%</td></tr>
+          <tr><td>Hemanth (Internal Transfer)</td><td class="num">1</td><td class="num">₹25,000.00</td><td class="num">4.6%</td></tr>
+          <tr><td>SIDDESHWARA FUEL</td><td class="num">1</td><td class="num">₹22,427.00</td><td class="num">4.1%</td></tr>
+          <tr><td>SOMASHEKHAR K R</td><td class="num">1</td><td class="num">₹19,950.00</td><td class="num">3.7%</td></tr>
+          <tr><td>K V Narayanaswamy</td><td class="num">1</td><td class="num">₹11,000.00</td><td class="num">2.0%</td></tr>
+          <tr><td>Other Payees (6)</td><td class="num">6</td><td class="num">₹27,509.00</td><td class="num">5.0%</td></tr>
+          <tr class="total"><td>TOTAL EXPENSES</td><td class="num">22</td><td class="num">₹5,44,986.16</td><td class="num">100.0%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="grid bottom">
+  <div class="card">
+    <div class="card-title orange">🏆 4. Where the Big Money Went — Top 5 Largest Expenses</div>
+    <div class="top5">
+      <div class="bigmoney">These five transactions alone account for <strong>₹3,61,455.54 (66.3% of total expenses)</strong>.</div>
+      <div class="expense-row"><div class="rank">1</div><div>01/08/2026</div><div class="highlight">BULLS INDIA SECURITA</div><div class="amount">₹1,56,773.00</div></div>
+      <div class="expense-row"><div class="rank">2</div><div>01/08/2026</div><div class="highlight">DURYODHAN SAHOO</div><div class="amount">₹60,330.00</div></div>
+      <div class="expense-row"><div class="rank">3</div><div>16/08/2026</div><div class="highlight">BESCOM - Electricity Bill Payment</div><div class="amount">₹55,432.54</div></div>
+      <div class="expense-row"><div class="rank">4</div><div>01/08/2026</div><div class="highlight">CHANDRA SHEKAR REDDY</div><div class="amount">₹54,720.00</div></div>
+      <div class="expense-row"><div class="rank">5</div><div>01/08/2026</div><div class="highlight">HEMANTH KUMAR KUMAR N</div><div class="amount">₹34,200.00</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title blue">📈 Expense Distribution</div>
+    <div class="chart-wrap">
+      <div class="donut"></div>
+      <div class="legend">
+        <div><span class="a"></span>BULLS INDIA SECURITA — 28.8%</div>
+        <div><span class="b"></span>BESCOM — 15.9%</div>
+        <div><span class="c"></span>DURYODHAN SAHOO — 11.1%</div>
+        <div><span class="d"></span>CHANDRA SHEKAR REDDY — 10.0%</div>
+        <div><span class="e"></span>Other Expenses — 34.2%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="card full">
+  <div class="card-title teal">📋 Full Top 15 List of Expenses</div>
+  <div class="body">
+    <table>
+      <thead><tr><th>Rank</th><th>Date</th><th>Paid To / Particulars</th><th>Category</th><th class="num">Amount (INR)</th><th>Rank</th><th>Date</th><th>Paid To / Particulars</th><th>Category</th><th class="num">Amount (INR)</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>01/08/2026</td><td>BULLS INDIA SECURITA</td><td>Security</td><td class="num">₹1,56,773.00</td><td>9</td><td>02/08/2026</td><td>SOMASHEKHAR K R</td><td>General</td><td class="num">₹19,950.00</td></tr>
+        <tr><td>2</td><td>01/08/2026</td><td>DURYODHAN SAHOO</td><td>Individual Payout</td><td class="num">₹60,330.00</td><td>10</td><td>11/08/2026</td><td>PRAKASH V</td><td>General</td><td class="num">₹13,453.00</td></tr>
+        <tr><td>3</td><td>16/08/2026</td><td>BESCOM - Electricity Bill Payment</td><td>Electricity</td><td class="num">₹55,432.54</td><td>11</td><td>16/08/2026</td><td>BESCOM</td><td>Electricity</td><td class="num">₹12,417.54</td></tr>
+        <tr><td>4</td><td>01/08/2026</td><td>CHANDRA SHEKAR REDDY</td><td>Individual Payout</td><td class="num">₹54,720.00</td><td>12</td><td>01/08/2026</td><td>K V Narayanaswamy</td><td>General</td><td class="num">₹11,000.00</td></tr>
+        <tr><td>5</td><td>01/08/2026</td><td>HEMANTH KUMAR KUMAR N</td><td>Individual Payout</td><td class="num">₹34,200.00</td><td>13</td><td>16/08/2026</td><td>BESCOM</td><td>Electricity</td><td class="num">₹10,476.54</td></tr>
+        <tr><td>6</td><td>07/08/2026</td><td>Hemanth (Internal Transfer)</td><td>Transfer</td><td class="num">₹25,000.00</td><td>14</td><td>01/08/2026</td><td>MILESTONE POOLS AND C</td><td>Maintenance</td><td class="num">₹9,000.00</td></tr>
+        <tr><td>7</td><td>13/08/2026</td><td>PRAKASH V</td><td>General</td><td class="num">₹23,154.00</td><td>15</td><td>01/08/2026</td><td>MAHESH REDDY S</td><td>General</td><td class="num">₹7,000.00</td></tr>
+        <tr><td>8</td><td>29/08/2026</td><td>SIDDESHWARA FUEL</td><td>Fuel</td><td class="num">₹22,427.00</td><td colspan="5"></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="card full">
+  <div class="card-title blue">🔎 5. Key Observations</div>
+  <div class="body summary-text">
+    <ul>
+      <li>Association income is almost entirely recurring monthly maintenance collected from <strong>114 flats via NoBroker</strong> — 96.3% of total receipts.</li>
+      <li>The single biggest expense was <strong>₹1,56,773.00</strong> paid to BULLS INDIA SECURITA, representing 28.8% of total expenses.</li>
+      <li>Electricity bills paid to BESCOM across four transactions totalled <strong>₹86,644.16</strong>.</li>
+      <li>Several large one-off transfers to individuals should be checked against Association records for their purpose.</li>
+      <li>The Association ended August with a <strong>net surplus of ₹1,81,812.84</strong>, increasing the bank balance from ₹14,53,224.10 to ₹16,35,036.94.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div>🏢 SS Snowdrop Apartment Allottees Welfare Association</div>
+  <div>All amounts are in INR • Figures based on the provided August 2026 bank statement</div>
+</footer>
+</div>
+</body>
+</html>
